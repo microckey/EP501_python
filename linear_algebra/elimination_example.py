@@ -18,7 +18,7 @@ print("Initial state of work matrix")
 print(Awork)
 
 
-# Simple Elimination (no pivoting or scaling)
+# Simple Elimination example (no pivoting or scaling)
 [nrow,ncol]=A.shape
 for i in range(0,nrow-1):            # row being used for elimination, note latter argument of range is number of iterations
     pivel=Awork[i,i]                 # pivot element
@@ -32,11 +32,7 @@ for i in range(0,nrow-1):            # row being used for elimination, note latt
             print(Awork)
 
 
-print("Final state of work matrix")
-print(Awork)
-
-
-# Backsubstitution
+# Backsubstitution example
 x=np.copy(Awork[:,-1]);
 print("Initial value of solution vector")
 print(x)
