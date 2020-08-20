@@ -32,8 +32,26 @@ def Gauss_elim(A,b,verbose):
         
     # Simple Elimination example (no pivoting or scaling)
     for i in range(0,n-1):            # row being used for elimination, note latter argument of range is number of iterations
-    
-    
+        # check whether pivoting should be done
+        pivmax=0
+        ip=i
+        for ip in range(i,n):
+            pivcurr=abs(Awork[order[ip],i])/max(abs(Awork[order[ip],:]))                  #function of reordered matrix
+            if (pivcurr>pivmax):
+                pivmax=pivcurr
+                ipmax=ip
+        
+        # reorder if needed
+        if (ipmax != i):
+            itmp=order[i]
+            order[i]=order[ipmax]
+            order[ipmax]=itmp
+            if (verbose):
+                print("Interchanging rows:  ",itmp," and:  ",order[i])
+                print("Present state of work matrix:  ")
+                print(Awork[order,:])
+            
+        # perform elimination on the reordered matrix
         pivel=Awork[order[i],i]                 # pivot element
         for j in range(i+1,n):        # row we are eliminating from
             elimel=Awork[order[j],i]                 # lead factor to be eliminated
