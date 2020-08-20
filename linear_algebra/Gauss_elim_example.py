@@ -19,7 +19,7 @@ b=np.random.randn(nrow,1)
 #b=np.array([[15.0], [10.0], [13.0]])                               # RHS of system
 
 # Solve with the module we've coded
-Awork=Gauss_elim(A,b,True)
+[Awork,order]=Gauss_elim(A,b,True)
 x=backsub(Awork,True)
 print("Value of x computed via Gaussian elimination and backsubstitution:  ")
 print(x)

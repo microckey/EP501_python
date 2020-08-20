@@ -27,17 +27,19 @@ def Gauss_elim(A,b,verbose):
         print(Awork)
         
     # ordering array for pivoting and scaling
-    # order=np.arange(0,n,1)
-    # print (order)
+    order=np.arange(0,n,1)
+    print(order)
         
     # Simple Elimination example (no pivoting or scaling)
     for i in range(0,n-1):            # row being used for elimination, note latter argument of range is number of iterations
-        pivel=Awork[i,i]                 # pivot element
+    
+    
+        pivel=Awork[order[i],i]                 # pivot element
         for j in range(i+1,n):        # row we are eliminating from
-            elimel=Awork[j,i]                 # lead factor to be eliminated
-            Awork[j,i]=0                      # forcing this to zero avoid precision issues
+            elimel=Awork[order[j],i]                 # lead factor to be eliminated
+            Awork[order[j],i]=0                      # forcing this to zero avoid precision issues
             for k in range(i+1,n+1):    # column elements, make sure to interate into the solution vector
-                Awork[j,k]=Awork[j,k]-elimel/pivel*Awork[i,k]
+                Awork[order[j],k]=Awork[order[j],k]-elimel/pivel*Awork[order[i],k]
                 if (verbose):
                     print("Present iteration of elimination",i,j,k)
                     print(pivel)
