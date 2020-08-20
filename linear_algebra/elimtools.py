@@ -30,7 +30,7 @@ def Gauss_elim(A,b,verbose):
     order=np.arange(0,n,1)
     print(order)
         
-    # Simple Elimination example (no pivoting or scaling)
+    # Gaussian elimination with pivoting and scalign
     for i in range(0,n-1):            # row being used for elimination, note latter argument of range is number of iterations
         # check whether pivoting should be done
         pivmax=0
@@ -65,7 +65,8 @@ def Gauss_elim(A,b,verbose):
                     print(Awork)
                 
     return [Awork,order]
-                
+
+
 
 # execute backsubstitution
 def backsub(Awork,verbose):
