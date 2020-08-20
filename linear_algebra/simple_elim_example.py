@@ -8,6 +8,15 @@ Created on Mon Aug 17 15:57:16 2020
 
 # Imports
 import numpy as np
+import math as ma
+
+
+# Illustrate number of operations required to execute Cramer's Rule directly
+lN=10;
+numops=np.zeros(lN)
+for i in range(0,lN):
+     numops[i]=(i)*ma.factorial(i+2)+i+1;
+print(numops)
 
 
 # Define test problem
@@ -44,4 +53,10 @@ for i in range(nrow-1,-1,-1):
          x[i]=x[i]-Awork[i,j]/denom*x[j]
          print("Present value of solution vector",i,j)
          print(x)
-         
+
+
+# Use built-in mathematical library from numpy to solve the same problem
+xpyth=np.linalg.solve(A,b);
+print("Solution vector computed via built-in numpy routine")
+print(xpyth)
+
