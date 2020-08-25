@@ -9,6 +9,8 @@ A script to illustrate some basic plotting and matrix operations in Python
 """
 
 import numpy as np
+import numpy.linalg as nla
+import scipy.linalg as sla
 from funexamples import fun1D,fun2D
 
 
@@ -25,92 +27,96 @@ Z1=fun2D(X,Y,2,0,0,3,4)
 Z2=fun2D(X,Y,5,2,-2,2,2)
 
 
+
+# Some basic Python plots
+
+
+
 # this matrix and vector represent the system of equations:
 # 1)   x +  2y +  4z = 18
 # 2)  2x + 12y -  2z =  9
 # 3)  5x + 26y +  5z = 14
 A=np.array([[1, 2, 4],[2, 12, -2],[5,26,5]])      #matrix of coefficients
 b=np.array([[18], [9], [14]])                     #this is the column vector representing the RHS of the system
+B=np.transpose(A)                                 #transpose of A, for illustration
 
-B=A';               %transpose of A
 
+# Some basic commands to printlay variables
+print("A = ")
+print(A)
 
-# Some basic commands to display variables
-print("A = ");
-print(A);
-
-print("b = ");
-print(b);
+print("b = ")
+print(b)
 
 # Compute some matrix properties and print them
-disp('det(A) = ');
-disp(det(A));
+print("det(A) = ")
+print(nla.det(A))
 
-disp('trace(A) = ');
-disp(trace(A));
+print("trace(A) = ")
+print(np.trace(A))
 
-disp('condition # of A = ');
-disp(cond(A));
+print("condition # of A = ")
+print(nla.cond(A))
 
-disp('transpose(A) = ');
-disp(B);
+print("transpose(A) = ")
+print(np.transpose(A))
 
-disp('Aii (diagonal elements of A) = ');
-disp(diag(A));
+print("Aii (diagonal elements of A) = ")
+print(np.diag(A))
 
-%matrix functions
-disp('A*B (matrix multiplication) = ');
-disp(A*B);
+# Matrix functions
+print("A*B (matrix multiplication) = ")
+print(A@B)
 
-disp('Aij*Bij (scalar multiplication) = ');
-disp(A.*B);
+print("Aij*Bij (scalar multiplication) = ")
+print(A*B)
 
-disp('5*A (multiplication) = ');
-disp(5*A);
+print("5*A (multiplication) = ")
+print(5*A)
 
-disp('Solution (x) of the system A*x=b:  ');
-disp('x = ');
-xvec=A\b;
-disp(xvec);
+print("Solution (x) of the system A*x=b:  ")
+print("x = ")
+xvec=nla.solve(A,b)
+print(xvec)
 
-disp('I (3x3 identity matrix) = ');
-disp(eye(3));
+print("I (3x3 identity matrix) = ")
+print(np.eye(3,3))
 
-disp('A^{-1} (inverse of A) = ')
-disp(A\eye(3));                    %this is preferred over inv(A) (see matlab documentation)
+print("A^{-1} (inverse of A) = ")
+Ainv=nla.solve(A,np.eye(3,3))
+print(Ainv)
 
-%slicing and concatenation of array/matrices
-disp('2nd row of A = ');
-disp(A(2,:));
+# slicing and concatenation of array/matrices
+print("2nd row of A = ")
+print(A[1,:])     #in Python arrays start at zero...
 
-disp('2nd column of A = ');
-disp(A(:,2));
+print("2nd column of A = ")
+print(A[:,1])
 
-disp('flat list (column vector) of matrix elements of A:  ')
-disp(A(:));
+print("flat list (column vector) of matrix elements of A:  ")
+print(A.flatten())
 
-disp('[A|A] (horizontal concatenation of A with itself):  ')
-disp(cat(2,A,A));
+print("[A|A] (horizontal concatenation of A with itself):  ")
+print(np.concatenate((A,A),axis=1))
 
-disp('Vertical concatenation of A with itself:  ')
-disp(cat(1,A,A));
+print("Vertical concatenation of A with itself:  ")
+print(np.concatenate((A,A),axis=0))
 
-disp('diagonal matrix:  ');
-a1=10:-1:1;                        %count backward
-a1=a1(:);                          %convert to column vector
-disp(diag(a1,0));
+print("diagonal matrix:  ")
+a1=np.arange(10,0,-1)                        # count backward, note endpoint excluded
+print(np.diag(a1))
 
-disp('LU decomposition of A (A=L*U):  ')
-[L,U]=lu(A);
-disp('L = ');
-disp(L);
-disp('U = ');
-disp(U);
+print("LU decomposition of A (A=L*U):  ")
+[P,L,U]=sla.lu(A)
+print("L = ")
+print(L)
+print("U = ")
+print(U)
 
-disp('Eigenvalues of A = ');
-[psi,lambda]=eig(A);
-disp(lambda);
-disp('Eigenvectors of A = ');
-disp(psi(:,1));
-disp(psi(:,2));
-disp(psi(:,3));
+print("Eigenvalues of A = ")
+[lam,psi]=sla.eig(A)      #note output args swapped from matlab
+print(lam)
+print("Eigenvectors of A = ")
+print(psi[:,0])
+print(psi[:,1])
+print(psi[:,2])
