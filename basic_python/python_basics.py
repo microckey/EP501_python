@@ -11,6 +11,8 @@ A script to illustrate some basic plotting and matrix operations in Python
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as sla
+import matplotlib.pyplot as plt
+
 from funexamples import fun1D,fun2D
 
 
@@ -28,8 +30,30 @@ Z2=fun2D(X,Y,5,2,-2,2,2)
 
 
 
-# Some basic Python plots
+# Basic 1D Python plotting with matplotlib
+plt.figure(1)
+plt.plot(x,y1,x,y2)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.title("Plot of two Gaussian functions")
+plt.legend(["curve 1","curve 2"])
+plt.show()
 
+
+# Basic 2D Python plotting with matplotlib
+plt.figure(2)
+im1=plt.pcolor(X,Y,Z1)
+plt.colorbar(im1)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
+
+fig3=plt.figure(3)
+im2=plt.pcolor(X,Y,Z2)
+plt.colorbar(im2)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
 
 
 # this matrix and vector represent the system of equations:
