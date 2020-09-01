@@ -3,6 +3,8 @@
 """
 Created on Tue Aug 18 15:36:20 2020
 
+Module containing functions to do elimination and backsubtitution.
+
 @author: zettergm
 """
 
