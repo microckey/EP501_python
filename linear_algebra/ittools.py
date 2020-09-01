@@ -16,20 +16,28 @@ import warnings
 def Jacobi(x0,A,b,tol,verbose):
     # get set up for iterations
     maxit=100
-    x=x0                     # initial guess
+    x=np.copy(x0)            # initial guess, note use of copy to avoid overwriting input
     difftot=tol+1e3          # to insure we enter iterations
-    [n,_]=A.shape()          # system size, note use of throwaway variable _
-    residual=10*np.ones((n,1))   # residual
+    [n,_]=A.shape            # system size, note use of throwaway variable _
+    residual=10*np.ones(n)   # residual
+    if (verbose):
+        print("System size:  ")
+        print(n)
+        print("Matrix:  ")
+        print(A)
+        print("RHS:  ")
+        print(b)
     
     it=1
-    while (difftot<tol & it<maxit):
+    while (difftot>tol and it<maxit):
         # save previous iteration values
         difftotprev=difftot
-        residualprev=residual
-        xprev=x
+        residualprev=np.copy(residual)        # note use of copy...
+        xprev=np.copy(x)
         for i in range(0,n):
             residual[i]=b[i]
             for j in range(0,n):
+                #print(i,j,residual[i],residualprev[i])
                 residual[i]=residual[i]-A[i,j]*xprev[j]
             x[i]=xprev[i]+residual[i]/A[i,i]
         difftot=np.sum(np.abs(residual-residualprev))
@@ -41,8 +49,12 @@ def Jacobi(x0,A,b,tol,verbose):
             print(it)
             print("difftot=")
             print(difftot)
+            print("residual=")
+            print(residual)
+            print("residualprev=")
+            print(residualprev)
 
-        if (difftot>difftotprev & it>2):
+        if (difftot>difftotprev and it>2):
             warnings.warn("Solution seems to be diverged; check diagonal dominance...")
             
         it=it+1
