@@ -25,7 +25,7 @@ y=np.linspace(-10,10,100)
 # Example function evaluations to plot
 y1=fun1D(x,1,1,3)
 y2=fun1D(x,1.5,-1,2)
-Z1=fun2D(X,Y,2,0,0,3,4)
+Z1=fun2D(X,Y,2,0,0,3,10)
 Z2=fun2D(X,Y,5,2,-2,2,2)
 
 
@@ -62,7 +62,7 @@ plt.show()
 # 3)  5x + 26y +  5z = 14
 A=np.array([[1, 2, 4],[2, 12, -2],[5,26,5]])      #matrix of coefficients
 b=np.array([[18], [9], [14]])                     #this is the column vector representing the RHS of the system
-B=np.transpose(A)                                 #transpose of A, for illustration
+B=np.transpose(A)                                 #transpose of A, for illustration of differences from MATLAB
 
 
 # Some basic commands to printlay variables
@@ -120,7 +120,7 @@ print(A[:,1])
 print("flat list (column vector) of matrix elements of A:  ")
 print(A.flatten())
 
-print("[A|A] (horizontal concatenation of A with itself):  ")
+print("Horizontal concatenation of A with itself:  ")
 print(np.concatenate((A,A),axis=1))
 
 print("Vertical concatenation of A with itself:  ")
