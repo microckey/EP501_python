@@ -8,6 +8,7 @@ A script to illustrate some basic plotting and matrix operations in Python
 @author: zettergm
 """
 
+# Load external modules
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as sla
@@ -29,7 +30,6 @@ Z1=fun2D(X,Y,2,0,0,3,10)
 Z2=fun2D(X,Y,5,2,-2,2,2)
 
 
-
 # Basic 1D Python plotting with matplotlib
 plt.figure(1)
 plt.plot(x,y1,x,y2)
@@ -46,6 +46,7 @@ im1=plt.pcolor(X,Y,Z1)
 plt.colorbar(im1)
 plt.xlabel("x")
 plt.ylabel("y")
+plt.title("2D Gaussian 1")
 plt.show()
 
 fig3=plt.figure(3)
@@ -53,6 +54,7 @@ im2=plt.pcolor(X,Y,Z2)
 plt.colorbar(im2)
 plt.xlabel("x")
 plt.ylabel("y")
+plt.title("2D Gaussian 2")
 plt.show()
 
 
@@ -74,7 +76,7 @@ print(b)
 
 # Compute some matrix properties and print them
 print("det(A) = ")
-print(nla.det(A))
+print(nla.det(A))     # numpy.linalg.det(A) longhand
 
 print("trace(A) = ")
 print(np.trace(A))
