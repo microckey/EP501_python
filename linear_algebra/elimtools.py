@@ -30,7 +30,6 @@ def Gauss_elim(A,b,verbose):
         
     # ordering array for pivoting and scaling
     order=np.arange(0,n,1)
-    print(order)
         
     # Gaussian elimination with pivoting and scalign
     for i in range(0,n-1):            # row being used for elimination, note latter argument of range is number of iterations
