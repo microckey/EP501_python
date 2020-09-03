@@ -9,6 +9,7 @@ Created on Mon Aug 17 15:57:16 2020
 # Imports
 import numpy as np
 import math as ma
+import matplotlib.pyplot as plt
 
 
 # Illustrate number of operations required to execute Cramer's Rule directly
@@ -17,6 +18,15 @@ numops=np.zeros(lN)
 for i in range(0,lN):
      numops[i]=(i)*ma.factorial(i+2)+i+1;
 print(numops)
+
+
+# Plot scaling of Cramer's rule
+plt.figure(1)
+plt.loglog(numops,'o')
+plt.xlabel("size of system (no. of unknowns)")
+plt.ylabel("number of ops required for Cramer's rule")
+plt.title("Infeasibility of direct solution methods")
+plt.show()
 
 
 # Define test problem
