@@ -9,5 +9,5 @@ Python scripts for EP501.  This repository is very much a work-in-progress.  I w
 1.  located in ./linear_algebra/
 2.  illustrates and checks various methods for solving matrix problems
 3.  contains python modules for elimination (elimtools.py) and iterative solutions (ittools.py) to linear systems of equations.
-4.  contains example scripts showing use of simple elimination and Gaussian elimination.  
-5.  contains examples of using iterative solutions based on Jacobi iteration.  
+4.  contains example scripts showing use of simple elimination (simple\_elim\_example.py) and Gaussian elimination (Gauss\_elim\_example.py).  
+5.  contains examples of using iterative solutions based on Jacobi iteration (Jacobi\_example.py).  
