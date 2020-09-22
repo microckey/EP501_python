@@ -18,8 +18,8 @@ def Jacobi(x0,A,b,tol,verbose):
     maxit=100
     x=np.copy(x0)            # initial guess, note use of copy to avoid overwriting input
     difftot=tol+1e3          # to insure we enter iterations
-    [n,_]=A.shape            # system size, note use of throwaway variable _
-    residual=10*np.ones(n)   # residual
+    [n,_]=A.shape            # system size, note use of python "throwaway" variable _
+    residual=10*np.ones(n)   # residual, initialize to be large enough so that main loops triggers
     if (verbose):
         print("System size:  ")
         print(n)
@@ -55,7 +55,7 @@ def Jacobi(x0,A,b,tol,verbose):
             print(residualprev)
 
         if (difftot>difftotprev and it>2):
-            warnings.warn("Solution seems to be diverged; check diagonal dominance...")
+            warnings.warn("Solution seems to be diverging; check diagonal dominance...")
             
         it=it+1
     
