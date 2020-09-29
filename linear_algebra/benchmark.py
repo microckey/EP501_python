@@ -37,10 +37,13 @@ for ind, n in enumerate(list(nvals)):
     print("Solution for system of size:  ",n," took time:  ", testtimes[ind])
     
 
-# Plot the (average) time elapsed during each solve
+# Plot the (average) time elapsed during each GE solve
 plt.figure(1)
 plt.plot(nvals,testtimes,'o')
 plt.xlabel("system size (no. of unknowns)")
 plt.ylabel("solution time (s)")
 plt.title("Performance of self-coded Gaussian elimination")
 plt.show()
+
+
+# Solve same system sizes (diagonally dominant problem) with Jacobi iteration

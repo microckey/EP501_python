@@ -23,7 +23,7 @@ A=np.diag(a0,-1)+np.diag(a1,0)+np.diag(a2,1)
 # Jacobi iterations
 x0=np.random.randn(n,1)
 b=np.ones((n,1))
-tol=1e-1
+tol=1e-6
 print("Verbose Jacobi iteration solution")
 print("---------------------------------------------------------------------")
 [x,iteration]=Jacobi(x0,A,b,tol,True)
