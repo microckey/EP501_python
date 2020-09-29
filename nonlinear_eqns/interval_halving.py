@@ -11,7 +11,7 @@ Demonstrates interval halving as a method for root finding
 
 # Imports
 import numpy as np
-from nonlinear_fns import fun3
+from nonlinear_fns import fun1 as f1
 import matplotlib.pyplot as plt
 
 
@@ -19,8 +19,13 @@ import matplotlib.pyplot as plt
 maxit=100
 minx=0
 maxx=2*np.pi
-tol=1e-6
+tol=1e-3
 verbose=True
+
+
+# Function we are finding roots of
+x=np.linspace(minx,maxx,50)
+y=f1(x)
 
 
 # Initial interval spec
@@ -33,21 +38,39 @@ b=b0
 # Interval halving iterations
 it=1
 converged=False
-while(!converged and it<=maxit):
+while(not (converged) and (it<=maxit)):
     c=(a+b)/2.0
     aprev=a
     bprev=b
-    if (fun3(a)*fun3(b)<0):    # we crossed zero so root is in this interval
+    if (f1(a)*f1(c)<0.0):    # we crossed zero so root is in this interval
         b=c
         left=True
     else:
         a=c
         left=False
     xnew=c
-    fval=fun3(xnew)
+    fval=f1(xnew)
     converged=abs(fval)<tol
-    
+    it=it+1
     if (verbose):
-        fig1=plt.figure
+        plt.figure(num=1)
         plt.clf
+        plt.plot(x,y)
+        plt.axis([a0,b0,-1,1])
+        if (left):
+            plt.plot(aprev,0,"k^")
+            plt.plot(bprev,0,"r^")
+        else:
+            plt.plot(aprev,0,"r^")
+            plt.plot(bprev,0,"k^")            
+        plt.plot(c,0,"ko")
+        plt.xlabel("x")
+        plt.ylabel("f(x)")
+        plt.title("x = %f" % (xnew))
+        plt.show()
+        _=input("Press the enter key to continue...")
+if (it==maxit):
+    print("WARNING:  max number of iterations used; proceed with caution...")
+print("Root value through interval halving:  ",xnew)
+print("Number of iterations used:  ",it-1)        
         

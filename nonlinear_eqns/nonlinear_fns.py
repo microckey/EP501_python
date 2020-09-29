@@ -8,7 +8,12 @@ Module for functions used in nonlinear equation solvers
 @author: zettergm
 """
 
-#import numpy as np
+import numpy as np
+
+def fun1(x):
+    y=np.cos(x)
+    return y
+
 
 def fun3(x):
     y=x**2+6*x+10
