@@ -47,7 +47,7 @@ plt.figure(1)
 plt.plot(nvals,testtimes,'o')
 plt.xlabel("system size (no. of unknowns)")
 plt.ylabel("solution time (s)")
-plt.title("Performance of self-coded Gaussian elimination")
+plt.title("Performance of self-coded solution")
 
 
 # Solve same system sizes (diagonally dominant problem) with Jacobi iteration
@@ -74,8 +74,5 @@ for ind, n in enumerate(list(nvals)):
 
 # Plot the time elapses for each Jacobi solve
 plt.plot(nvals,testtimes,'^')
-plt.xlabel("system size (no. of unknowns)")
-plt.ylabel("solution time (s)")
-plt.title("Performance of self-coded Jacobi iteration")
 plt.legend(["Gaussian elim.","Jacobi it."])
 plt.show()
