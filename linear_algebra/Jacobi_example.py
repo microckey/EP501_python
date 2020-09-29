@@ -22,11 +22,12 @@ A=np.diag(a0,-1)+np.diag(a1,0)+np.diag(a2,1)
 
 # Jacobi iterations
 x0=np.random.randn(n,1)
+#x0=10*np.ones((n,1))    # "bad" initial guess to show effects on convergence
 b=np.ones((n,1))
-tol=1e-6
+tol=1e-2
 print("Verbose Jacobi iteration solution")
 print("---------------------------------------------------------------------")
-[x,iteration]=Jacobi(x0,A,b,tol,True)
+[x,iteration]=Jacobi(x0,A,b,tol,False)
 print("---------------------------------------------------------------------")
 print("Iterative solution")
 print(x)
@@ -38,5 +39,3 @@ xpyth=np.linalg.solve(A,b)
 print(xpyth)
 print("Residual:  ")
 print(x-xpyth)
-
-# Illustrate convergence for different choices of tolerance...

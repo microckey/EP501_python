@@ -12,7 +12,7 @@ import numpy as np
 import warnings
 
 
-# Perform Jacobi iteration
+# Perform Jacobi iteration, assumes the user checks for diagonal dominance before calling
 def Jacobi(x0,A,b,tol,verbose):
     # get set up for iterations
     maxit=100
@@ -37,10 +37,9 @@ def Jacobi(x0,A,b,tol,verbose):
         for i in range(0,n):
             residual[i]=b[i]
             for j in range(0,n):
-                #print(i,j,residual[i],residualprev[i])
                 residual[i]=residual[i]-A[i,j]*xprev[j]
             x[i]=xprev[i]+residual[i]/A[i,i]
-        difftot=np.sum(np.abs(residual-residualprev))
+        difftot=np.sum(np.abs(residual-residualprev))    #1 norm of residual vector
         
         if (verbose):
             print("x=")
@@ -54,6 +53,7 @@ def Jacobi(x0,A,b,tol,verbose):
             print("residualprev=")
             print(residualprev)
 
+        # FIXME:  should be an error???
         if (difftot>difftotprev and it>2):
             warnings.warn("Solution seems to be diverging; check diagonal dominance...")
             
