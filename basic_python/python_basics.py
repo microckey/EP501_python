@@ -12,6 +12,7 @@ A script to illustrate some basic plotting and matrix operations in Python
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as sla
+import scipy.special as sspec
 import matplotlib.pyplot as plt
 
 from funexamples import fun1D,fun2D
@@ -146,3 +147,14 @@ print("Eigenvectors of A = ")
 print(psi[:,0])
 print(psi[:,1])
 print(psi[:,2])
+
+
+# Special (Bessel) functions
+rho=np.linspace(0,10,num=50)
+plt.figure(4)
+plt.plot(rho,sspec.jv(0,rho),rho,sspec.jv(1,rho),rho,sspec.jv(2,rho),rho,sspec.jv(3,rho))
+plt.xlabel("x")
+plt.ylabel("J")
+plt.legend(["order 0","1","2","3"])
+plt.title("Bessel functions of different order")
+plt.show()
