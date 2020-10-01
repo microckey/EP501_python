@@ -13,12 +13,13 @@ Demonstrates interval halving as a method for root finding
 import numpy as np
 from nonlinear_fns import fun1 as f1
 import matplotlib.pyplot as plt
+import sys
 
 
 # Setup for iterations for a closed domain method
 maxit=100
 minx=0
-maxx=2*np.pi
+maxx=4*2*np.pi
 tol=1e-3
 verbose=True
 
@@ -29,8 +30,12 @@ y=f1(x)
 
 
 # Initial interval spec
-a0=np.pi/4
-b0=np.pi
+#a0=np.pi/4
+#b0=np.pi
+#a0=0
+#b0=3*np.pi/2 + np.pi/4
+a0=0
+b0=4*np.pi
 a=a0
 b=b0
 
@@ -45,9 +50,13 @@ while(not (converged) and (it<=maxit)):
     if (f1(a)*f1(c)<0.0):    # we crossed zero so root is in this interval
         b=c
         left=True
-    else:
+    elif (f1(b)*f1(c)<=0.0):
         a=c
         left=False
+    else:
+        print("ERROR:  cannot determine root location within half intervals",a,b,c)
+        exitflag=True
+        left=True   # doesn't matter
     xnew=c
     fval=f1(xnew)
     converged=abs(fval)<tol
@@ -68,7 +77,10 @@ while(not (converged) and (it<=maxit)):
         plt.ylabel("f(x)")
         plt.title("x = %f" % (xnew))
         plt.show()
-        _=input("Press the enter key to continue...")
+        if (exitflag):
+            sys.exit()
+        else:
+            _=input("Press the enter key to continue...")
 if (it==maxit):
     print("WARNING:  max number of iterations used; proceed with caution...")
 print("Root value through interval halving:  ",xnew)
