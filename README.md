@@ -5,6 +5,12 @@ Python scripts for EP501.  This repository is very much a work-in-progress.  I w
 
 ## Codes updated for FA2020 semester
 
+### Basic python functionality
+
+1.  Located in ./python_basics
+2.  Contains scripts showing how to execute basic calculations and plotting in Python (basic\_python.py).
+3.  Contains a script showing how to use python to load data from MATLAB .mat files (load\_matlab\_file.py).  
+
 ### Numerical linear algebra
 
 1.  Located in ./linear_algebra/

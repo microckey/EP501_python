@@ -68,7 +68,7 @@ while(not (converged) and (it<=maxit)):
             plt.plot(bprev,0,"k^")            
         plt.plot(c,0,"ko")
         yline=(f1(bprev)-f1(aprev))/(bprev-aprev)*(x-aprev)+f1(aprev);    # line approximation
-        plt.plot(x,yline)
+        plt.plot(x,yline,"--")
         plt.xlabel("x")
         plt.ylabel("f(x)")
         plt.title("x = %f" % (xnew))
